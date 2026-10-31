@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!--
+    PORTOFOLIO — Muhammad Arifin Albukhori
+    File : index.html (struktur halaman)
+
+    Struktur proyek:
+      index.html      -> isi & struktur halaman (file ini)
+      css/style.css   -> tampilan, warna, layout, responsif
+      js/script.js    -> animasi & interaksi
+      img/foto.jpg    -> foto profil
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Muhammad Arifin Albukhori — Portofolio</title>
+  <meta name="description" content="Portofolio Muhammad Arifin Albukhori: mahasiswa dengan pengalaman di bidang pendidikan dan logistik.">
+  <meta name="theme-color" content="#05060d">
+
+  <!-- Pratinjau saat link dibagikan -->
+  <meta property="og:title" content="Muhammad Arifin Albukhori — Portofolio">
+  <meta property="og:description" content="Mahasiswa dengan pengalaman di bidang pendidikan dan logistik. Perjalanan yang masih terus berjalan.">
+  <meta property="og:type" content="website">
+
+  <!-- Ikon tab browser (SVG kecil, tanpa file tambahan) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305060d'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='30' font-weight='700' text-anchor='middle' fill='%23ff3b5c'%3ER%3C/text%3E%3C/svg%3E">
+
+  <!-- Font dari Google Fonts (jika offline, otomatis pakai font sistem) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet utama -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Jika JavaScript mati, sembunyikan intro agar halaman tetap bisa dibaca -->
+  <noscript><style>.intro, .glow { display: none !important; }</style></noscript>
+</head>
+
+<body>
+  <a class="skip-link" href="#about">Lewati ke konten</a>
+
+  <!-- ===== INTRO: layar pembuka dengan persentase loading ===== -->
+  <div class="intro" id="intro">
+    <div class="intro-inner">
+      <h1>REYY</h1>
+      <div class="intro-bar"><i></i></div>
+      <p class="eyebrow" id="pct">0%</p>
+    </div>
+    <button class="btn" id="skip" type="button" aria-label="Lewati animasi pembuka">Lewati</button>
+  </div>
+
+  <!-- ===== LAPISAN DEKORASI (tidak berisi teks) ===== -->
+  <div class="progress" id="progress" aria-hidden="true"></div>   <!-- garis progres scroll -->
+  <div class="glow" id="glow" aria-hidden="true"></div>           <!-- cahaya mengikuti mouse -->
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>  <!-- cahaya biru & merah -->
+  <canvas id="net" aria-hidden="true"></canvas>                   <!-- jaringan titik animasi -->
+
+  <!-- ===== NAVIGASI ===== -->
+  <header class="nav" id="nav">
+    <a class="logo" href="#home">Hikarireyy</a>
+
+    <!-- Tombol hamburger: hanya tampil di HP -->
+    <button class="burger" id="burger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+
+    <nav class="menu" id="menu" aria-label="Navigasi utama">
+      <a href="#home">Beranda</a>
+      <a href="#about">Tentang</a>
+      <a href="#story">Cerita</a>
+      <a href="#journey">Perjalanan</a>
+      <a href="#skills">Kekuatan</a>
+      <a href="#philosophy">Filosofi</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== 1. HERO: perkenalan singkat + foto ===== -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <p class="eyebrow reveal">Portofolio · Citeureup, Bogor</p>
+        <h1 class="name" data-split>Muhammad Arifin Albukhori</h1>
+
+        <!-- Peran berganti-ganti (animasi CSS). "Santri" diulang di akhir agar putarannya mulus -->
+        <p class="roles reveal" aria-label="Santri, pengajar, pekerja logistik, mahasiswa">
+          <span aria-hidden="true"><b>Santri</b><b>Pengajar</b><b>Pekerja Logistik</b><b>Mahasiswa</b><b>Santri</b></span>
+        </p>
+
+        <p class="tagline" data-split>Perjalanan yang masih terus berjalan.</p>
+        <p class="lead reveal">Mahasiswa dengan pengalaman di bidang pendidikan dan logistik. Terus belajar, berkembang, dan membangun langkah menuju masa depan yang lebih baik.</p>
+
+        <div class="cta reveal">
+          <a class="btn primary magnetic" href="#journey">Lihat perjalanan saya</a>
+          <a class="btn magnetic" href="#contact">Hubungi saya</a>
+        </div>
+      </div>
+
+      <div class="hero-photo reveal">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="orbit second" aria-hidden="true"></div>
+
+        <div class="frame" id="frame">
+          <div class="frame-inner">
+            <span class="mono" aria-hidden="true">AR</span>
+            <!-- Jika foto gagal dimuat, gambar dihapus dan inisial "AR" yang tampil -->
+            <img src="img/foto.jpg" alt="Foto Muhammad Arifin Albukhori" width="900" height="1200" decoding="async" onerror="this.remove()">
+          </div>
+        </div>
+
+        <div class="chip left"><b>Mahasiswa</b><span>Universitas Indraprasta PGRI</span></div>
+        <div class="chip right"><b>Warehouse Staff</b><span>Delta Food Distribusi</span></div>
+      </div>
+
+      <span class="scroll-cue" aria-hidden="true"></span>
+    </section>
+
+    <!-- Teks berjalan (daftar kata ditulis 2 kali agar putarannya tidak putus) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Pendidikan</span><span>Logistik</span><span>Komunikasi</span><span>Kerja Tim</span><span>Adaptasi</span><span>Tanggung Jawab</span>
+        <span>Pendidikan</span><span>Logistik</span><span>Komunikasi</span><span>Kerja Tim</span><span>Adaptasi</span><span>Tanggung Jawab</span>
+      </div>
+    </div>
+
+    <!-- ===== 2. TENTANG SAYA ===== -->
+    <section class="section glow-blue" id="about">
+      <p class="eyebrow reveal">Tentang saya</p>
+      <h2 class="heading" data-split>Dari dunia pondok, melangkah ke dunia luar.</h2>
+
+      <p class="lead-lg reveal">Dulu, dunia saya hanya sebatas lingkungan pondok pesantren. Setelah lulus, saya memberanikan diri melangkah keluar: mengajar, belajar langsung dari kyai sambil bekerja, lalu terjun ke dunia logistik yang sebelumnya belum saya kenal. Dari pengalaman-pengalaman baru itulah saya tumbuh menjadi pribadi yang lebih dewasa.</p>
+      <p class="lead-lg reveal mute" style="margin-top:1.2rem">Perjalanan ini mengajarkan saya komunikasi, tanggung jawab, disiplin, dan kemampuan beradaptasi. Setiap pengalaman, sekecil apa pun, adalah bagian dari proses bertumbuh.</p>
+
+      <!-- Data diri -->
+      <dl class="facts">
+        <div class="card reveal"><dt>Nama</dt><dd>Muhammad Arifin Albukhori</dd></div>
+        <div class="card reveal"><dt>Pendidikan</dt><dd>Mahasiswa Universitas Indraprasta PGRI<br><span class="mute">Alumni Muthmainnatul Qulub Boarding School (2023)</span></dd></div>
+        <div class="card reveal"><dt>Peran saat ini</dt><dd>Warehouse Staff di Delta Food Distribusi</dd></div>
+        <div class="card reveal"><dt>Domisili</dt><dd>Citeureup, Kabupaten Bogor, Indonesia</dd></div>
+      </dl>
+    </section>
+
+    <!-- ===== 3. CERITA HIDUP: 4 bab, berganti saat di-scroll ===== -->
+    <section class="story" id="story" aria-label="Cerita hidup">
+      <div class="story-pin">
+        <div class="story-top">
+          <p class="eyebrow">Cerita hidup</p>
+          <p class="eyebrow story-count" id="storyCount">01 / 04</p>
+        </div>
+
+        <div class="stage">
+          <article class="chapter">
+            <span class="num" aria-hidden="true">01</span>
+            <p class="meta">Muthmainnatul Qulub · hingga 2023</p>
+            <h2>Dunia pertama saya adalah pondok.</h2>
+            <p>Di pesantren, saya belajar ilmu agama, adab, dan disiplin. Hari-hari diatur oleh waktu ibadah dan waktu belajar. Dari sana saya memahami bahwa ilmu bukan hanya untuk dipahami, tetapi juga untuk dijalani.</p>
+          </article>
+
+          <article class="chapter">
+            <span class="num" aria-hidden="true">02</span>
+            <p class="meta">Pondok Pesantren Nurul Amal · 2023</p>
+            <h2>Dari murid, menjadi pengajar.</h2>
+            <p>Setelah lulus, saya mulai mengajar di Pondok Pesantren Nurul Amal. Untuk pertama kalinya saya berdiri di sisi yang berbeda: menyampaikan ilmu, bukan hanya menerimanya.</p>
+          </article>
+
+          <article class="chapter">
+            <span class="num" aria-hidden="true">03</span>
+            <p class="meta">Majelis Ta'lim Bani Sulaiman · 2023 – 2024</p>
+            <h2>Belajar dengan cara mengabdi.</h2>
+            <p>Saya melanjutkan mengajar di Majelis Ta'lim Bani Sulaiman sambil ngalap berkah (mencari keberkahan) dan belajar langsung dari kyai. Di sana saya juga bekerja di perusahaan milik kyai, dan memahami bahwa ilmu dan kerja berjalan beriringan.</p>
+          </article>
+
+          <article class="chapter">
+            <span class="num" aria-hidden="true">04</span>
+            <p class="meta">J&amp;T Express · Delta Food Distribusi · 2025 – sekarang</p>
+            <h2>Melangkah ke dunia yang belum saya kenal.</h2>
+            <p>Dari lingkungan pondok, saya memberanikan diri terjun ke dunia logistik: gudang, paket, dan ritme kerja yang baru. Banyak hal yang belum saya ketahui, dan dari situlah saya belajar serta tumbuh dewasa.</p>
+          </article>
+        </div>
+
+        <!-- Titik indikator bab (jumlahnya sama dengan jumlah bab) -->
+        <div class="story-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <!-- ===== 4. PERJALANAN: timeline pengalaman ===== -->
+    <section class="section glow-red" id="journey">
+      <span class="bg-word" aria-hidden="true">PERJALANAN</span>
+      <p class="eyebrow reveal">Perjalanan</p>
+      <h2 class="heading" data-split>Setiap langkah punya cerita.</h2>
+
+      <ol class="timeline" id="timeline">
+        <li class="reveal"><span class="dot"></span>
+          <div class="card">
+            <p class="when">Hingga 2023</p>
+            <h3>Muthmainnatul Qulub Boarding School</h3>
+            <p class="job">Santri · Lulus 2023</p>
+            <p>Dunia pertama saya: mendalami ilmu agama, adab, dan disiplin dalam kehidupan pesantren.</p>
+            <p class="tags"><span>Disiplin</span><span>Kemandirian</span></p>
+          </div>
+        </li>
+
+        <li class="reveal"><span class="dot"></span>
+          <div class="card">
+            <p class="when">24 Agu 2023 – 5 Nov 2023</p>
+            <h3>Pondok Pesantren Nurul Amal</h3>
+            <p class="job">Pengajar</p>
+            <p>Langkah pertama setelah lulus: mengajar di lingkungan pondok pesantren.</p>
+            <p class="tags"><span>Mengajar</span><span>Komunikasi</span></p>
+          </div>
+        </li>
+
+        <li class="reveal"><span class="dot"></span>
+          <div class="card">
+            <p class="when">11 Des 2023 – 7 Apr 2024</p>
+            <h3>Majelis Ta'lim Bani Sulaiman</h3>
+            <p class="job">Pengajar · Belajar sambil bekerja</p>
+            <p>Mengajar sambil belajar langsung dari kyai, sekaligus bekerja di perusahaan milik kyai. Berani mencoba hal baru, membangun komunikasi, dan membantu proses pembelajaran.</p>
+            <p class="tags"><span>Komunikasi</span><span>Mengajar</span><span>Tanggung Jawab</span></p>
+          </div>
+        </li>
+
+        <li class="reveal"><span class="dot"></span>
+          <div class="card">
+            <p class="when">17 Jun 2025 – 24 Mei 2026</p>
+            <h3>J&amp;T Express</h3>
+            <p class="job">Warehouse Staff</p>
+            <p>Berpengalaman dalam operasional gudang, penanganan barang, pengelolaan paket, dan proses logistik.</p>
+            <p class="tags"><span>Operasional Gudang</span><span>Penanganan Paket</span><span>Kerja Tim</span></p>
+          </div>
+        </li>
+
+        <li class="reveal"><span class="dot"></span>
+          <div class="card">
+            <p class="when">12 Jun 2026 – Sekarang</p>
+            <h3>Delta Food Distribusi</h3>
+            <p class="job">Warehouse Staff</p>
+            <p>Terlibat dalam operasional gudang dan distribusi, penanganan barang, serta mendukung kelancaran proses logistik.</p>
+            <p class="tags"><span>Dukungan Logistik</span><span>Koordinasi Operasional</span><span>Adaptabilitas</span></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== 5. KEKUATAN ===== -->
+    <section class="section glow-blue" id="skills">
+      <span class="bg-word" aria-hidden="true">KEKUATAN</span>
+      <p class="eyebrow reveal">Kekuatan</p>
+      <h2 class="heading" data-split>Hal yang saya bawa dalam perjalanan.</h2>
+
+      <div class="grid">
+        <div class="card reveal"><h3>Komunikasi</h3><p>Menyampaikan materi dan berkoordinasi dengan jelas.</p></div>
+        <div class="card reveal"><h3>Kerja Tim</h3><p>Bekerja bersama tim dalam operasional harian.</p></div>
+        <div class="card reveal"><h3>Adaptabilitas</h3><p>Berpindah dari dunia pondok ke dunia pendidikan dan logistik.</p></div>
+        <div class="card reveal"><h3>Tanggung Jawab</h3><p>Menjaga tugas dan barang yang dipercayakan.</p></div>
+        <div class="card reveal"><h3>Manajemen Waktu</h3><p>Menyeimbangkan kuliah dan pekerjaan.</p></div>
+        <div class="card reveal"><h3>Operasional Gudang</h3><p>Penanganan barang dan pengelolaan paket.</p></div>
+        <div class="card reveal"><h3>Dukungan Logistik</h3><p>Mendukung kelancaran proses distribusi.</p></div>
+      </div>
+
+      <p class="trait reveal">
+        <span class="eyebrow">Sifat dasar: pembelajar sejati</span>
+        <span class="mute">Terus belajar. Terus berkembang.</span>
+      </p>
+    </section>
+
+    <!-- ===== 6. FILOSOFI ===== -->
+    <section class="section philosophy glow-red" id="philosophy">
+      <p class="eyebrow reveal">Filosofi</p>
+
+      <blockquote class="quote">
+        <p class="quote-text" id="quoteText">“Kita tidak bisa menghubungkan titik-titik dengan menatap ke depan; kita hanya bisa menghubungkannya dengan menengok ke belakang. Karena itu, percayalah bahwa titik-titik itu akan terhubung di masa depan.”</p>
+        <footer class="quote-by">— Steve Jobs</footer>
+      </blockquote>
+
+      <p class="mine reveal">Setiap pengalaman menjadi bagian dari gambaran yang lebih besar. Meski langkah berikutnya belum pasti, saya memilih untuk terus belajar, terus bergerak, dan memercayai perjalanan ini.</p>
+    </section>
+
+    <!-- ===== 7. KONTAK ===== -->
+    <section class="section glow-blue" id="contact">
+      <span class="bg-word" aria-hidden="true">KONTAK</span>
+      <p class="eyebrow reveal">Kontak</p>
+      <h2 class="heading" data-split>Hubungi saya.</h2>
+      <p class="lead-lg reveal">Punya pertanyaan, ingin berdiskusi, atau sekadar berkenalan? Silakan hubungi saya lewat salah satu kontak di bawah ini.</p>
+
+      <div class="cards">
+        <!-- Instagram -->
+        <a class="card reveal" href="https://www.instagram.com/akemireyy_/" target="_blank" rel="noopener noreferrer" aria-label="Buka Instagram @akemireyy_">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+          </svg>
+          <span class="eyebrow">Instagram</span>
+          <strong>@akemireyy_</strong>
+        </a>
+
+        <!-- WhatsApp (kelas "wa" dipakai script.js untuk menambah pesan otomatis) -->
+        <a class="card reveal wa" href="https://wa.me/6282318281072" target="_blank" rel="noopener noreferrer" aria-label="Kirim pesan WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 9c0 3 3 6 6 6l1-1.5-2-1-1 .7c-1-.4-2-1.4-2.3-2.4l.8-.9-1-2z" fill="currentColor"/>
+          </svg>
+          <span class="eyebrow">WhatsApp</span>
+          <strong>+62 823-1828-1072</strong>
+        </a>
+
+        <!-- GitHub -->
+        <a class="card reveal" href="https://github.com/albukhoryariefin121-alt" target="_blank" rel="noopener noreferrer" aria-label="Buka GitHub albukhoryariefin121-alt">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 19c-4 1.2-4-2-6-2.5m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6 0C6.8 2.8 5.8 3.1 5.8 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="eyebrow">GitHub</span>
+          <strong>albukhoryariefin121-alt</strong>
+        </a>
+      </div>
+
+      <a class="btn primary magnetic wa" href="https://wa.me/6282318281072" target="_blank" rel="noopener noreferrer">Hubungi via WhatsApp</a>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p class="tagline">REYY — Perjalanan masih berlanjut.</p>
+    <p class="mute">© <span id="year">2026</span> Muhammad Arifin Albukhori</p>
+    <p class="mute"><a class="src-link" href="https://github.com/albukhoryariefin121-alt/portfolio" target="_blank" rel="noopener noreferrer">Lihat kode sumber di GitHub</a></p>
+    <button class="btn" id="toTop" type="button">Kembali ke atas</button>
+  </footer>
+
+  <!-- JavaScript dimuat paling akhir agar seluruh elemen di atas sudah ada -->
+  <script src="js/script.js"></script>
+</body>
+</html>
